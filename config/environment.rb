@@ -13,4 +13,5 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 end
 
-$redis = Redis.new(YAML.load(File.read(File.dirname(__FILE__) + "/redis.yml"))['host'])
+REDIS_CONFIG = YAML.load(File.read(File.dirname(__FILE__) + "/redis.yml")).symbolize_keys
+$redis = Redis.new(REDIS_CONFIG)
